@@ -5,8 +5,9 @@ use std::cell::RefCell;
 use futures::stream::SplitSink;
 use futures::{SinkExt, StreamExt};
 use gloo::utils::errors::JsError;
+use reqwasm::websocket;
 use reqwasm::websocket::futures::WebSocket;
-use reqwasm::websocket::{self, WebSocketError};
+use reqwasm::websocket::WebSocketError;
 use sycamore::futures::ScopeSpawnLocal;
 use sycamore::prelude::*;
 
