@@ -6,4 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+console_error_panic_hook = "0.1.7"
 sycamore = { version = "0.8.0-beta.3", features = ["suspense"] }
+sycamore-hooks = { path="../../" }
+sycamore-router = "0.8.0-beta.3"

@@ -47,10 +47,23 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
+name = "console_error_panic_hook"
+version = "0.1.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a06aeb73f470f66dcdbf7223caeebb85984942f22f1adb2a088cf9668146bbbc"
+dependencies = [
+ "cfg-if",
+ "wasm-bindgen",
+]
+
+[[package]]
 name = "demo"
 version = "0.1.0"
 dependencies = [
+ "console_error_panic_hook",
  "sycamore",
+ "sycamore-hooks",
+ "sycamore-router",
 ]
 
 [[package]]
@@ -375,6 +388,23 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "308cc39be01b73d0d18f82a0e7b2a3df85245f84af96fdddc5d202d27e47b86a"
 
 [[package]]
+name = "minimal-lexical"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "68354c5c6bd36d73ff3feceb05efa59b6acb7626617f4962be322a825e61f79a"
+
+[[package]]
+name = "nom"
+version = "7.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1b1d11e1ef389c76fe5b81bcaf2ea32cf88b62bc494e19f493d0b30e7a930109"
+dependencies = [
+ "memchr",
+ "minimal-lexical",
+ "version_check",
+]
+
+[[package]]
 name = "once_cell"
 version = "1.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -608,6 +638,31 @@ dependencies = [
  "indexmap",
  "slotmap",
  "smallvec",
+]
+
+[[package]]
+name = "sycamore-router"
+version = "0.8.0-beta.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "87f3914c69fb43317cf562a6a07f4b2b1d9c7c551e4be6870b667cf0fc065e92"
+dependencies = [
+ "sycamore",
+ "sycamore-router-macro",
+ "wasm-bindgen",
+ "web-sys",
+]
+
+[[package]]
+name = "sycamore-router-macro"
+version = "0.8.0-beta.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "58f2b8f013e711e7d463bd16638665f7429a6cbf0678fe57ae3dcdb36bdd0b1a"
+dependencies = [
+ "nom",
+ "proc-macro2",
+ "quote",
+ "syn",
+ "unicode-xid",
 ]
 
 [[package]]

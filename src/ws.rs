@@ -13,8 +13,9 @@ use sycamore::prelude::*;
 
 pub use reqwasm::websocket::Message;
 
+#[derive(Clone, Copy)]
 pub struct WebSocketHandle<'a> {
-    ws_write: RefCell<SplitSink<WebSocket, Message>>,
+    ws_write: &'a RefCell<SplitSink<WebSocket, Message>>,
     state: &'a Signal<websocket::State>,
     message: &'a Signal<String>,
     message_bytes: &'a Signal<Vec<u8>>,
@@ -49,7 +50,7 @@ impl<'a> ScopeUseWebSocket<'a> for Scope<'a> {
         });
 
         Ok(WebSocketHandle {
-            ws_write: RefCell::new(write),
+            ws_write: self.create_ref(RefCell::new(write)),
             state,
             message,
             message_bytes,
@@ -58,24 +59,24 @@ impl<'a> ScopeUseWebSocket<'a> for Scope<'a> {
 }
 
 impl<'a> WebSocketHandle<'a> {
-    pub async fn send(&self, message: Message) -> Result<(), WebSocketError> {
+    pub async fn send(self, message: Message) -> Result<(), WebSocketError> {
         self.ws_write.borrow_mut().send(message).await
     }
 
-    pub fn state(&'a self) -> &'a ReadSignal<websocket::State> {
+    pub fn state(self) -> &'a ReadSignal<websocket::State> {
         self.state
     }
 
-    pub fn message(&'a self) -> &'a ReadSignal<String> {
+    pub fn message(self) -> &'a ReadSignal<String> {
         self.message
     }
 
-    pub fn message_bytes(&'a self) -> &'a ReadSignal<Vec<u8>> {
+    pub fn message_bytes(self) -> &'a ReadSignal<Vec<u8>> {
         self.message_bytes
     }
 
     /// NOTE: Not yet implemented due to technical reasons.
-    pub fn close(&self) {
+    pub fn close(self) {
         unimplemented!();
     }
 }
