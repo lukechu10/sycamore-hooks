@@ -20,17 +20,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d301b3b94cb4b2f23d7917810addbbaff90738e0ca2be692bd027e70d7e0330c"
 
 [[package]]
-name = "async-trait"
-version = "0.1.52"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "061a7acccaa286c011ddc30970520b98fa40e00c9d644633fb26b5fc63a265e3"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn",
-]
-
-[[package]]
 name = "autocfg"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -195,15 +184,16 @@ dependencies = [
 
 [[package]]
 name = "gloo"
-version = "0.6.0"
+version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d21d2b3c97d07d967ff927dda82528d3c1c6cbc3c189ebf2f450222dbcd77a55"
+checksum = "f96605dc96adaffef27d911a805f0269d83ab89c1076e9c75ebac64a1a27215d"
 dependencies = [
  "gloo-console",
  "gloo-dialogs",
  "gloo-events",
  "gloo-file",
  "gloo-history",
+ "gloo-net",
  "gloo-render",
  "gloo-storage",
  "gloo-timers",
@@ -268,6 +258,26 @@ dependencies = [
  "serde_urlencoded",
  "thiserror",
  "wasm-bindgen",
+ "web-sys",
+]
+
+[[package]]
+name = "gloo-net"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2899cb1a13be9020b010967adc6b2a8a343b6f1428b90238c9d53ca24decc6db"
+dependencies = [
+ "futures-channel",
+ "futures-core",
+ "futures-sink",
+ "gloo-utils",
+ "js-sys",
+ "pin-project",
+ "serde",
+ "serde_json",
+ "thiserror",
+ "wasm-bindgen",
+ "wasm-bindgen-futures",
  "web-sys",
 ]
 
@@ -588,8 +598,7 @@ checksum = "f2dd574626839106c320a323308629dcb1acfc96e32a8cba364ddc61ac23ee83"
 [[package]]
 name = "sycamore"
 version = "0.8.0-beta.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "11f097178dcdfe46a6e961820bc204a1e88d0902f87d37d5c083901053db75a7"
+source = "git+https://github.com/sycamore-rs/sycamore?rev=1d5f164#1d5f1646814bafd999ad26f2d3bb7489873e7c91"
 dependencies = [
  "ahash",
  "futures",
@@ -607,8 +616,7 @@ dependencies = [
 [[package]]
 name = "sycamore-futures"
 version = "0.8.0-beta.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "68f76dffd26521bec16fff814fdf01cdd0fa9b0918c541a4e6062f37a85e2051"
+source = "git+https://github.com/sycamore-rs/sycamore?rev=1d5f164#1d5f1646814bafd999ad26f2d3bb7489873e7c91"
 dependencies = [
  "futures",
  "sycamore-reactive",
@@ -620,7 +628,6 @@ dependencies = [
 name = "sycamore-hooks"
 version = "0.1.0"
 dependencies = [
- "async-trait",
  "futures",
  "gloo",
  "reqwasm",
@@ -633,8 +640,7 @@ dependencies = [
 [[package]]
 name = "sycamore-macro"
 version = "0.8.0-beta.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a3e956bbb32216c30d599fda3fb77cb944747bedbbffb0971eff06f3e49e1ecc"
+source = "git+https://github.com/sycamore-rs/sycamore?rev=1d5f164#1d5f1646814bafd999ad26f2d3bb7489873e7c91"
 dependencies = [
  "once_cell",
  "proc-macro2",
@@ -645,8 +651,7 @@ dependencies = [
 [[package]]
 name = "sycamore-reactive"
 version = "0.8.0-beta.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9a0b75063a021e9c0d942088f95d2384349a29d1014d721033e0064085cce422"
+source = "git+https://github.com/sycamore-rs/sycamore?rev=1d5f164#1d5f1646814bafd999ad26f2d3bb7489873e7c91"
 dependencies = [
  "indexmap",
  "slotmap",
@@ -656,8 +661,7 @@ dependencies = [
 [[package]]
 name = "sycamore-router"
 version = "0.8.0-beta.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "87f3914c69fb43317cf562a6a07f4b2b1d9c7c551e4be6870b667cf0fc065e92"
+source = "git+https://github.com/sycamore-rs/sycamore?rev=1d5f164#1d5f1646814bafd999ad26f2d3bb7489873e7c91"
 dependencies = [
  "sycamore",
  "sycamore-router-macro",
@@ -668,8 +672,7 @@ dependencies = [
 [[package]]
 name = "sycamore-router-macro"
 version = "0.8.0-beta.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "58f2b8f013e711e7d463bd16638665f7429a6cbf0678fe57ae3dcdb36bdd0b1a"
+source = "git+https://github.com/sycamore-rs/sycamore?rev=1d5f164#1d5f1646814bafd999ad26f2d3bb7489873e7c91"
 dependencies = [
  "nom",
  "proc-macro2",

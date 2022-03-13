@@ -4,12 +4,13 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-async-trait = "0.1.52"
 futures = "0.3.21"
 gloo = "0.6.0"
 reqwasm = "0.4.1"
 serde = { version = "1.0.136", features = ["derive"], optional = true }
-sycamore = { version = "0.8.0-beta.3", features = ["suspense"] }
+sycamore = { git = "https://github.com/sycamore-rs/sycamore", rev = "1d5f164", features = [
+    "suspense",
+] }
 web-sys = "0.3.56"
 
 [dev-dependencies]

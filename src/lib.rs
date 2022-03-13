@@ -1,7 +1,7 @@
 //! Sycamore hooks.
 
 mod reactive;
-mod ws;
+mod network;
 
 pub use reactive::*;
-pub use ws::*;
+pub use network::*;

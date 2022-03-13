@@ -9,7 +9,7 @@ enum Routes {
     #[to("/")]
     Index,
     // region: Demo pages
-    #[to("/demo/use_web_socket")]
+    #[to("/demo/network/use_web_socket")]
     WebSocketDemo,
     // endregion
     #[not_found]
@@ -17,7 +17,7 @@ enum Routes {
 }
 
 #[component]
-fn App<G: Html>(ctx: ScopeRef) -> View<G> {
+fn App<G: Html>(ctx: Scope) -> View<G> {
     view! { ctx,
         Router {
             integration: HistoryIntegration::new(),
@@ -26,7 +26,7 @@ fn App<G: Html>(ctx: ScopeRef) -> View<G> {
                     div {
                         (match *route.get() {
                             Routes::Index => view! { ctx, index::Index {} },
-                            Routes::WebSocketDemo => view! { ctx, demo::use_web_socket::UseWebSocket {} },
+                            Routes::WebSocketDemo => view! { ctx, demo::network::UseWebSocket {} },
                             Routes::NotFound => view! { ctx, "404 Not Found" },
                         })
                     }

@@ -1,11 +1,10 @@
 use sycamore::futures::ScopeSpawnLocal;
 use sycamore::prelude::*;
-use sycamore_hooks::{Message, ScopeUseWebSocket};
+use sycamore_hooks::{Message, use_web_socket};
 
 #[component]
-pub fn UseWebSocket<G: Html>(ctx: ScopeRef) -> View<G> {
-    let ws = ctx
-        .use_web_socket("wss://echo.websocket.events/")
+pub fn UseWebSocket<G: Html>(ctx: Scope) -> View<G> {
+    let ws = use_web_socket(ctx, "wss://echo.websocket.events/")
         .expect("could not connect to web socket");
     let message = ws.message();
 
