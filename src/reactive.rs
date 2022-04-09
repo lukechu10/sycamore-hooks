@@ -1,6 +1,9 @@
 use futures::channel::oneshot;
 use sycamore::prelude::*;
 
+mod toggle;
+pub use toggle::*;
+
 pub async fn until<'a>(cx: Scope<'a>, mut f: impl FnMut() -> bool + 'a) {
     let (rx, tx) = oneshot::channel();
     let mut rx = Some(rx);

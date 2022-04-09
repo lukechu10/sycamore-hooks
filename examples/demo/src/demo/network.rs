@@ -1,6 +1,6 @@
 use sycamore::futures::spawn_local_scoped;
 use sycamore::prelude::*;
-use sycamore_hooks::{use_web_socket, Message};
+use sycamore_hooks::network::{use_web_socket, Message};
 
 #[component]
 pub fn UseWebSocket<G: Html>(cx: Scope) -> View<G> {
