@@ -7,8 +7,6 @@ edition = "2021"
 
 [dependencies]
 console_error_panic_hook = "0.1.7"
-sycamore = { git = "https://github.com/sycamore-rs/sycamore", rev = "1d5f164", features = [
-    "suspense",
-] }
+sycamore = { version = "0.8.0-beta.4", features = ["suspense"] }
 sycamore-hooks = { path = "../../" }
-sycamore-router = { git = "https://github.com/sycamore-rs/sycamore", rev = "1d5f164" }
+sycamore-router = "0.8.0-beta.4"

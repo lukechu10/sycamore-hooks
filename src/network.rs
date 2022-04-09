@@ -8,7 +8,7 @@ use gloo::utils::errors::JsError;
 use reqwasm::websocket;
 use reqwasm::websocket::futures::WebSocket;
 use reqwasm::websocket::WebSocketError;
-use sycamore::futures::ScopeSpawnLocal;
+use sycamore::futures::spawn_local_scoped;
 use sycamore::prelude::*;
 
 pub use reqwasm::websocket::Message;
@@ -23,15 +23,15 @@ pub struct WebSocketHandle<'a> {
 
 /// Opens a web socket connection at the specified `url`. The connection is closed when the enclosing scope is destroyed
 /// or when [`WebSocketHandle::close`] is called.
-pub fn use_web_socket<'a>(ctx: Scope<'a>, url: &str) -> Result<WebSocketHandle<'a>, JsError> {
-    let state = ctx.create_signal(websocket::State::Closed);
-    let message = ctx.create_signal(String::new());
-    let message_bytes = ctx.create_signal(Vec::new());
+pub fn use_web_socket<'a>(cx: Scope<'a>, url: &str) -> Result<WebSocketHandle<'a>, JsError> {
+    let state = create_signal(cx, websocket::State::Closed);
+    let message = create_signal(cx, String::new());
+    let message_bytes = create_signal(cx, Vec::new());
 
     let ws = WebSocket::open(url)?;
     let (write, mut read) = ws.split();
 
-    ctx.spawn_local(async move {
+    spawn_local_scoped(cx, async move {
         while let Some(next) = read.next().await {
             if let Ok(m) = next {
                 match m {
@@ -43,7 +43,7 @@ pub fn use_web_socket<'a>(ctx: Scope<'a>, url: &str) -> Result<WebSocketHandle<'
     });
 
     Ok(WebSocketHandle {
-        ws_write: ctx.create_ref(RefCell::new(write)),
+        ws_write: create_ref(cx, RefCell::new(write)),
         state,
         message,
         message_bytes,

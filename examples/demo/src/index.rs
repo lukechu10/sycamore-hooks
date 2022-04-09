@@ -1,8 +1,8 @@
 use sycamore::prelude::*;
 
 #[component]
-pub fn Index<G: Html>(ctx: Scope) -> View<G> {
-    view! { ctx,
+pub fn Index<G: Html>(cx: Scope) -> View<G> {
+    view! { cx,
         h1 { "Sycamore Hooks Demo" }
         h2 { "Network" }
         ul {

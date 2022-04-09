@@ -5,7 +5,7 @@ pub async fn until<'a>(cx: Scope<'a>, mut f: impl FnMut() -> bool + 'a) {
     let (rx, tx) = oneshot::channel();
     let mut rx = Some(rx);
 
-    cx.create_effect(move || {
+    create_effect(cx, move || {
         if let Some(rx) = rx.take() {
             if f() {
                 // Rationale: `tx` is not dropped until `rx` is sent for the first time,

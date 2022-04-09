@@ -17,17 +17,17 @@ enum Routes {
 }
 
 #[component]
-fn App<G: Html>(ctx: Scope) -> View<G> {
-    view! { ctx,
+fn App<G: Html>(cx: Scope) -> View<G> {
+    view! { cx,
         Router {
             integration: HistoryIntegration::new(),
-            view: |ctx, route: &ReadSignal<Routes>| {
-                view! { ctx,
+            view: |cx, route: &ReadSignal<Routes>| {
+                view! { cx,
                     div {
                         (match *route.get() {
-                            Routes::Index => view! { ctx, index::Index {} },
-                            Routes::WebSocketDemo => view! { ctx, demo::network::UseWebSocket {} },
-                            Routes::NotFound => view! { ctx, "404 Not Found" },
+                            Routes::Index => view! { cx, index::Index {} },
+                            Routes::WebSocketDemo => view! { cx, demo::network::UseWebSocket {} },
+                            Routes::NotFound => view! { cx, "404 Not Found" },
                         })
                     }
                 }
@@ -38,8 +38,8 @@ fn App<G: Html>(ctx: Scope) -> View<G> {
 
 fn main() {
     console_error_panic_hook::set_once();
-    sycamore::render(|ctx| {
-        view! { ctx,
+    sycamore::render(|cx| {
+        view! { cx,
             App {}
         }
     });
