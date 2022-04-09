@@ -21,3 +21,30 @@ pub fn use_toggle<T: Clone>(cx: Scope, initial: T, other: T) -> (&ReadSignal<T>,
 
     (state, update)
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_bool_toggle() {
+        create_scope_immediate(|cx| {
+            let (state, update) = use_toggle_bool(cx, true);
+            assert!(*state.get());
+
+            update();
+            assert!(!*state.get());
+        });
+    }
+
+    #[test]
+    fn test_toggle() {
+        create_scope_immediate(|cx| {
+            let (state, update) = use_toggle(cx, "hello", "bonjour");
+            assert_eq!(*state.get(), "hello");
+
+            update();
+            assert_eq!(*state.get(), "bonjour");
+        });
+    }
+}
