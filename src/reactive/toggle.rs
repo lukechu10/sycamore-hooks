@@ -4,7 +4,7 @@ use sycamore::prelude::*;
 pub fn use_toggle_bool(cx: Scope, initial: bool) -> (&ReadSignal<bool>, impl Fn() + '_) {
     let state = create_signal(cx, initial);
 
-    (state, move || state.set(!*state.get()))
+    (state, || state.set(!*state.get()))
 }
 
 /// Create a state that is toggled between two possible values.

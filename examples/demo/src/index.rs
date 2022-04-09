@@ -7,7 +7,7 @@ pub fn Index<G: Html>(cx: Scope) -> View<G> {
         h2 { "Network" }
         ul {
             li {
-                a(href="demo/network/use_web_socket") { "use_web_socket" }
+                a(href="demo/net/use_web_socket") { "use_web_socket" }
             }
         }
     }

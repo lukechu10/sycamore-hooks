@@ -4,14 +4,14 @@ use std::cell::RefCell;
 
 use futures::stream::SplitSink;
 use futures::{SinkExt, StreamExt};
+use gloo::net::websocket;
+use gloo::net::websocket::futures::WebSocket;
+use gloo::net::websocket::WebSocketError;
 use gloo::utils::errors::JsError;
-use reqwasm::websocket;
-use reqwasm::websocket::futures::WebSocket;
-use reqwasm::websocket::WebSocketError;
 use sycamore::futures::spawn_local_scoped;
 use sycamore::prelude::*;
 
-pub use reqwasm::websocket::Message;
+pub use gloo::net::websocket::Message;
 
 #[derive(Clone, Copy)]
 pub struct WebSocketHandle<'a> {

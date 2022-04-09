@@ -1,4 +1,4 @@
 //! Sycamore hooks.
 
-pub mod network;
+pub mod net;
 pub mod reactive;
