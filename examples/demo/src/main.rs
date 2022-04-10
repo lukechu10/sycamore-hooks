@@ -11,6 +11,8 @@ enum Routes {
     // region: Demo pages
     #[to("/demo/net/use_web_socket")]
     WebSocketDemo,
+    #[to("/demo/window/use_title")]
+    UseTitleDemo,
     // endregion
     #[not_found]
     NotFound,
@@ -27,6 +29,7 @@ fn App<G: Html>(cx: Scope) -> View<G> {
                         (match *route.get() {
                             Routes::Index => view! { cx, index::Index {} },
                             Routes::WebSocketDemo => view! { cx, demo::net::UseWebSocket {} },
+                            Routes::UseTitleDemo => view! { cx, demo::window::UseTitle {} },
                             Routes::NotFound => view! { cx, "404 Not Found" },
                         })
                     }

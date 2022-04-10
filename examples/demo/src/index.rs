@@ -10,5 +10,23 @@ pub fn Index<G: Html>(cx: Scope) -> View<G> {
                 a(href="demo/net/use_web_socket") { "use_web_socket" }
             }
         }
+        h2 { "Reactive" }
+        ul {
+            li {
+                "until"
+            }
+            li {
+                "create_toggle"
+            }
+            li {
+                "create_bool_toggle"
+            }
+        }
+        h2 { "Window" }
+        ul {
+            li {
+                a(href="demo/window/use_title") { "use_title" }
+            }
+        }
     }
 }

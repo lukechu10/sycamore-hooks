@@ -14,7 +14,7 @@ pub fn UseWebSocket<G: Html>(cx: Scope) -> View<G> {
         h2 { "use_web_socket" }
 
         input(bind:value=input) { "Input" }
-        button(on:click=move |_| {
+        button(type="button", on:click=move |_| {
             spawn_local_scoped(cx, async move {
                 ws.send(Message::Text(input.get().as_ref().clone())).await.expect("could not send message");
             });
