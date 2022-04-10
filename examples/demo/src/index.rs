@@ -21,6 +21,9 @@ pub fn Index<G: Html>(cx: Scope) -> View<G> {
             li {
                 "create_bool_toggle"
             }
+            li {
+                "create_counter"
+            }
         }
         h2 { "Window" }
         ul {
