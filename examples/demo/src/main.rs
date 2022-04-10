@@ -13,6 +13,8 @@ enum Routes {
     WebSocketDemo,
     #[to("/demo/window/use_title")]
     UseTitleDemo,
+    #[to("/demo/window/use_full_screen")]
+    UseFullScreenDemo,
     // endregion
     #[not_found]
     NotFound,
@@ -30,6 +32,7 @@ fn App<G: Html>(cx: Scope) -> View<G> {
                             Routes::Index => view! { cx, index::Index {} },
                             Routes::WebSocketDemo => view! { cx, demo::net::UseWebSocket {} },
                             Routes::UseTitleDemo => view! { cx, demo::window::UseTitle {} },
+                            Routes::UseFullScreenDemo => view! { cx, demo::window::UseFullScreen {} },
                             Routes::NotFound => view! { cx, "404 Not Found" },
                         })
                     }

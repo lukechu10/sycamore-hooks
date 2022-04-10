@@ -27,6 +27,9 @@ pub fn Index<G: Html>(cx: Scope) -> View<G> {
             li {
                 a(href="demo/window/use_title") { "use_title" }
             }
+            li {
+                a(href="demo/window/use_full_screen") { "use_full_screen" }
+            }
         }
     }
 }
