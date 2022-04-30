@@ -10,7 +10,9 @@ enum Routes {
     Index,
     // region: Demo pages
     #[to("/demo/net/use_web_socket")]
-    WebSocketDemo,
+    UseWebSocketDemo,
+    #[to("/demo/timer/create_polled")]
+    CreatePolledDemo,
     #[to("/demo/window/use_title")]
     UseTitleDemo,
     #[to("/demo/window/use_full_screen")]
@@ -30,7 +32,8 @@ fn App<G: Html>(cx: Scope) -> View<G> {
                     div {
                         (match *route.get() {
                             Routes::Index => view! { cx, index::Index {} },
-                            Routes::WebSocketDemo => view! { cx, demo::net::UseWebSocket {} },
+                            Routes::UseWebSocketDemo => view! { cx, demo::net::UseWebSocket {} },
+                            Routes::CreatePolledDemo => view! { cx, demo::timer::CreatePolled {} },
                             Routes::UseTitleDemo => view! { cx, demo::window::UseTitle {} },
                             Routes::UseFullScreenDemo => view! { cx, demo::window::UseFullScreen {} },
                             Routes::NotFound => view! { cx, "404 Not Found" },

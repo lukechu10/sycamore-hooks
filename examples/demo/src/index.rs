@@ -25,6 +25,18 @@ pub fn Index<G: Html>(cx: Scope) -> View<G> {
                 "create_counter"
             }
         }
+        h2 { "Timer" }
+        ul {
+            li {
+                "create_timeout"
+            }
+            li {
+                "create_interval"
+            }
+            li {
+                a(href="demo/timer/create_polled") { "create_polled" }
+            }
+        }
         h2 { "Window" }
         ul {
             li {
