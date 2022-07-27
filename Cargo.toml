@@ -5,15 +5,15 @@ edition = "2021"
 
 [dependencies]
 futures = "0.3.21"
-gloo = "0.7.0"
+gloo = "0.8.0"
 gloo-timers = { version = "0.2.4", features = ["futures"] }
-js-sys = "0.3.57"
-serde = { version = "1.0.136", features = ["derive"], optional = true }
-sycamore = { version = "0.8.0-beta.4", features = ["suspense"] }
-web-sys = "0.3.57"
+js-sys = "0.3.59"
+serde = { version = "1.0.140", features = ["derive"], optional = true }
+sycamore = { version = "0.8.0-beta.7", features = ["suspense"] }
+web-sys = "0.3.59"
 
 [dev-dependencies]
-tokio = { version = "1.17.0", features = ["rt", "macros"] }
+tokio = { version = "1.20.1", features = ["rt", "macros"] }
 
 [workspace]
 members = ["examples/demo"]
