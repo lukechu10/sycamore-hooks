@@ -22,7 +22,7 @@ pub fn create_timeout<'a>(cx: Scope<'a>, f: impl FnOnce() + 'a, delay: Duration)
 /// Creates a new interval. The interval is cancelled automatically when the scope is destroyed.
 pub fn create_interval<'a>(cx: Scope<'a>, mut f: impl FnMut() + 'a, delay: Duration) {
     spawn_local_scoped(cx, async move {
-        while let Some(_) = IntervalStream::new(
+        while IntervalStream::new(
             delay
                 .as_millis()
                 .try_into()
@@ -30,6 +30,7 @@ pub fn create_interval<'a>(cx: Scope<'a>, mut f: impl FnMut() + 'a, delay: Durat
         )
         .next()
         .await
+        .is_some()
         {
             f();
         }
