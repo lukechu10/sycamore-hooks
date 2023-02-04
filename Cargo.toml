@@ -13,7 +13,7 @@ sycamore = { version = "0.8.0-beta.7", features = ["suspense"] }
 web-sys = "0.3.59"
 
 [dev-dependencies]
-tokio = { version = "1.20.3", features = ["rt", "macros"] }
+tokio = { version = "1.20.4", features = ["rt", "macros"] }
 
 [workspace]
 members = ["examples/demo"]
