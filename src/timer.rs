@@ -6,8 +6,8 @@ use std::time::Duration;
 use sycamore::{futures::spawn_local_scoped, prelude::*};
 
 /// Creates a new timeout. If the scope is destroyed before the timeout is executed, the timeout is canceled automatically.
-pub fn create_timeout<'a>(cx: Scope<'a>, f: impl FnOnce() + 'a, delay: Duration) {
-    spawn_local_scoped(cx, async move {
+pub fn create_timeout(f: impl FnOnce() + 'static, delay: Duration) {
+    spawn_local_scoped(async move {
         TimeoutFuture::new(
             delay
                 .as_millis()
@@ -20,8 +20,8 @@ pub fn create_timeout<'a>(cx: Scope<'a>, f: impl FnOnce() + 'a, delay: Duration)
 }
 
 /// Creates a new interval. The interval is cancelled automatically when the scope is destroyed.
-pub fn create_interval<'a>(cx: Scope<'a>, mut f: impl FnMut() + 'a, delay: Duration) {
-    spawn_local_scoped(cx, async move {
+pub fn create_interval(mut f: impl FnMut() + 'static, delay: Duration) {
+    spawn_local_scoped(async move {
         while IntervalStream::new(
             delay
                 .as_millis()
@@ -38,12 +38,11 @@ pub fn create_interval<'a>(cx: Scope<'a>, mut f: impl FnMut() + 'a, delay: Durat
 }
 
 /// Periodically polls a function. The function is called at least once when the poll is created.
-pub fn create_polled<'a, T>(
-    cx: Scope<'a>,
-    mut f: impl FnMut() -> T + 'a,
+pub fn create_polled<T>(
+    mut f: impl FnMut() -> T + 'static,
     delay: Duration,
-) -> &'a ReadSignal<T> {
-    let state = create_signal(cx, f());
-    create_interval(cx, move || state.set(f()), delay);
-    state
+) -> ReadSignal<T> {
+    let state = create_signal(f());
+    create_interval(move || state.set(f()), delay);
+    *state
 }
