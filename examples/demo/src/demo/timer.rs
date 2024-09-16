@@ -5,14 +5,14 @@ use sycamore::prelude::*;
 use sycamore_hooks::timer::create_polled;
 
 #[component]
-pub fn CreatePolled<G: Html>(cx: Scope) -> View<G> {
-    let time = create_polled(cx, Date::new_0, Duration::from_millis(1000));
+pub fn CreatePolled() -> View {
+    let time = create_polled(Date::new_0, Duration::from_millis(1000));
 
-    view! { cx,
+    view! {
         h2 { "create_polled" }
 
         p {
-            "The current time is: " (time.get().to_string())
+            "The current time is: " (time.get_clone().to_string().as_string().unwrap())
         }
     }
 }
