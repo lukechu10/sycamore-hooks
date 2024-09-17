@@ -8,8 +8,7 @@ use sycamore_router::{HistoryIntegration, Route, Router};
 enum Routes {
     #[to("/")]
     Index,
-    // region: Demo pages
-    #[to("/demo/net/use_web_socket")]
+    #[to("/demo/websocket/use_web_socket")]
     UseWebSocketDemo,
     #[to("/demo/timer/create_polled")]
     CreatePolledDemo,
@@ -17,7 +16,6 @@ enum Routes {
     UseTitleDemo,
     #[to("/demo/window/use_full_screen")]
     UseFullScreenDemo,
-    // endregion
     #[not_found]
     NotFound,
 }
@@ -32,7 +30,7 @@ fn App() -> View {
                     div {
                         (match route.get() {
                             Routes::Index => view! { index::Index {} },
-                            Routes::UseWebSocketDemo => view! { demo::net::UseWebSocket {} },
+                            Routes::UseWebSocketDemo => view! { demo::websocket::UseWebSocket {} },
                             Routes::CreatePolledDemo => view! { demo::timer::CreatePolled {} },
                             Routes::UseTitleDemo => view! { demo::window::UseTitle {} },
                             Routes::UseFullScreenDemo => view! { demo::window::UseFullScreen {} },

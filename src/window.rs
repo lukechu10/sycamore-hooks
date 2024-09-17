@@ -1,4 +1,3 @@
-use gloo::utils::{document, document_element};
 use sycamore::prelude::*;
 
 /// A hook that sets the title of the page to the given string and restores the previous title
@@ -18,7 +17,7 @@ pub fn use_full_screen(active: ReadSignal<bool>) {
     create_effect(move || {
         let fs_enabled = document().fullscreen_element().is_some();
         if active.get() && !fs_enabled {
-            document_element().request_fullscreen().unwrap();
+            document().document_element().unwrap().request_fullscreen().unwrap();
         } else if fs_enabled {
             document().exit_fullscreen();
         }

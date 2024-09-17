@@ -5,14 +5,14 @@ use std::rc::Rc;
 
 use futures::stream::SplitSink;
 use futures::{SinkExt, StreamExt};
-use gloo::net::websocket;
-use gloo::net::websocket::futures::WebSocket;
-use gloo::net::websocket::WebSocketError;
-use gloo::utils::errors::JsError;
+use gloo_net::websocket;
+use gloo_net::websocket::futures::WebSocket;
+use gloo_net::websocket::WebSocketError;
+use js_sys::wasm_bindgen::JsError;
 use sycamore::futures::spawn_local_scoped;
 use sycamore::prelude::*;
 
-pub use gloo::net::websocket::Message;
+pub use gloo_net::websocket::Message;
 
 #[derive(Clone, Copy)]
 pub struct WebSocketHandle {

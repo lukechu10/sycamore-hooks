@@ -1,7 +1,9 @@
 //! Sycamore hooks.
 
 pub mod keyed;
-pub mod net;
+#[cfg(feature = "websocket")]
+pub mod websocket;
 pub mod reactive;
 pub mod window;
+#[cfg(feature = "timer")]
 pub mod timer;

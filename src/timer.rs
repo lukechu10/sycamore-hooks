@@ -1,7 +1,7 @@
 //! Hooks for working with `setTimeout` and `setInterval`.
 
 use futures::StreamExt;
-use gloo::timers::future::{IntervalStream, TimeoutFuture};
+use gloo_timers::future::{IntervalStream, TimeoutFuture};
 use std::time::Duration;
 use sycamore::{futures::spawn_local_scoped, prelude::*};
 

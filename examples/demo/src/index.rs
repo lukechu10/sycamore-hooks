@@ -7,7 +7,7 @@ pub fn Index() -> View {
         h2 { "Network" }
         ul {
             li {
-                a(href="demo/net/use_web_socket") { "use_web_socket" }
+                a(href="demo/websocket/use_web_socket") { "use_web_socket" }
             }
         }
         h2 { "Reactive" }

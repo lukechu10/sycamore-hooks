@@ -5,15 +5,22 @@ edition = "2021"
 
 [dependencies]
 futures = "0.3.21"
-gloo = "0.8.0"
-gloo-timers = { version = "0.2.4", features = ["futures"] }
+gloo-net = { version = "0.6.0", optional = true }
+gloo-timers = { version = "0.3.0", features = ["futures"], optional = true }
 js-sys = "0.3.59"
 serde = { version = "1.0.140", features = ["derive"], optional = true }
-sycamore = { version = "0.9.0-beta.4", features = ["suspense"] }
+sycamore = "0.9.0-beta.4"
 web-sys = "0.3.59"
 
 [dev-dependencies]
 tokio = { version = "1.20.4", features = ["rt", "macros"] }
+
+[features]
+default = []
+full = ["timer", "websocket"]
+serde = ["dep:serde"]
+timer = ["dep:gloo-timers"]
+websocket = ["dep:gloo-net", "gloo-net/websocket"]
 
 [workspace]
 members = ["examples/demo"]
