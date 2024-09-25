@@ -17,10 +17,11 @@ tokio = { version = "1.20.4", features = ["rt", "macros"] }
 
 [features]
 default = []
-full = ["timer", "websocket"]
+full = ["math", "timer", "websocket"]
+math = []
 serde = ["dep:serde"]
 timer = ["dep:gloo-timers"]
-websocket = ["dep:gloo-net", "gloo-net/websocket"]
+websocket = ["dep:gloo-net", "gloo-net/websocket", "sycamore/suspense"]
 
 [workspace]
 members = ["examples/demo"]
